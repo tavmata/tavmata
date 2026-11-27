@@ -177,11 +177,9 @@ def write(name, text):
 CHANNELS = [  # number, English, Portuguese, screen background, screen ink
     ('01', 'LIVING ROOM', 'SALA', None, '#46B154'),
     ('02', 'KAPI ONLINE', 'KAPI ONLINE', '#1A120D', '#E08A4A'),
-    ('03', 'CLOCK', 'RELÓGIO', '#0E3B43', '#E2B857'),
     ('04', 'RESEARCH', 'PESQUISA', '#F4F0E2', '#2D5DB8'),
     ('05', 'PASSPORT', 'PASSAPORTE', '#1E2C55', '#D4AF4F'),
     ('06', 'DASHBOARD', 'PAINEL', '#FF5AA5', '#1F5FD1'),
-    ('07', 'AGENTS', 'AGENTES', '#1D4F91', '#E8F1FF'),
     ('08', 'ARCADE', 'FLIPERAMA', '#FFFFFF', '#111111'),
     ('09', 'CV', 'FICHA', '#2338A0', '#FFFFFF'),
     ('10', 'CORDEL', 'CORDEL', '#EDE3C8', '#161616'),
@@ -197,10 +195,10 @@ DIG = {
 BARS = ['#C0C0C0', '#C0C000', '#00C0C0', '#00C000', '#C000C0', '#C00000', '#0000C0']
 HEADER_TEXT = {
     'en': {'place': 'FLORIANÓPOLIS · BRAZIL', 'l1': 'INTERNATIONAL RELATIONS · UFSC',
-           'l2': 'MIGRATION RESEARCH · GAMES · AI', 'now': 'NOW SHOWING',
+           'l2': 'MIGRATION RESEARCH · GAMES · DATA', 'now': 'NOW SHOWING',
            'title': 'Otávio Kich Mata: a pixel living room where the TV flips through the channels of kich.dev.br'},
     'pt': {'place': 'FLORIANÓPOLIS · BRASIL', 'l1': 'RELAÇÕES INTERNACIONAIS · UFSC',
-           'l2': 'MIGRAÇÃO · JOGOS · DADOS · IA', 'now': 'NO AR AGORA',
+           'l2': 'MIGRAÇÃO · JOGOS · DADOS', 'now': 'NO AR AGORA',
            'title': 'Otávio Kich Mata: uma sala em pixel onde a TV troca entre os canais do kich.dev.br'},
 }
 
@@ -245,7 +243,7 @@ def header(lang):
     chip_w = max(text_width(f'▶ CH {c[0]} · {n}', 3) for c, n in zip(CHANNELS, names)) + 32
     for k, ((num, _en, _pt, bg, ink), name) in enumerate(zip(CHANNELS, names)):
         g = [f'<g class="st s{k}" style="animation-delay:{k * 3}s">']
-        if k == 10:  # end of broadcast: colour bars
+        if num == '11':  # end of broadcast: colour bars
             for i, c in enumerate(BARS):
                 cols = [(x, y) for (x, y) in mask if (x - sx) * 7 // sw == i]
                 g.append(pix(cols, c, OX, OY, P))
@@ -260,8 +258,8 @@ def header(lang):
             g.append(pix(digs, ink, OX, OY, P))
         label = f'▶ CH {num} · {name}'
         cbg = bg or '#14303A'
-        cink = ink if k != 10 else '#F4F6F6'
-        if k == 10:
+        cink = ink if num != '11' else '#F4F6F6'
+        if num == '11':
             cbg = '#111111'
         g.append(f'<rect x="{chip_x}" y="{chip_y}" width="{chip_w}" height="{chip_h}" fill="{cbg}" '
                  f'stroke="#F4F6F6" stroke-opacity=".18" stroke-width="2"/>')
@@ -280,7 +278,7 @@ def header(lang):
             if ch != '.':
                 pin.append(((66 + c, 52 + r), pal[ch]))
     pin_g = ''.join(pix([p], col, OX, OY, P) for p, col in pin)
-    body.append(f'<g class="st pin" style="animation-delay:30s">{pin_g}</g>')
+    body.append(f'<g class="st pin" style="animation-delay:{(len(CHANNELS) - 1) * 3}s">{pin_g}</g>')
 
     # bunting across the top, like the room's festa junina flags
     flag_cols = ['#E8483C', '#EDC04E', '#7FA6E8', '#C9713F', '#B48CD8', '#46B154']
@@ -308,9 +306,10 @@ def header(lang):
     body.append(ptext(T['l2'], X, 182, 3, '#A3ACB3'))
     body.append(ptext(T['now'], X, 220, 2, '#46B154'))
 
+    cycle, slot = len(CHANNELS) * 3, 100 / len(CHANNELS)  # three seconds per channel
     style = (
-        '.st{opacity:0;animation:st 33s step-end infinite}'
-        '@keyframes st{0%{opacity:1}9.0909%{opacity:0}100%{opacity:0}}'
+        f'.st{{opacity:0;animation:st {cycle}s step-end infinite}}'
+        f'@keyframes st{{0%{{opacity:1}}{slot:.4f}%{{opacity:0}}100%{{opacity:0}}}}'
         '.noise{opacity:0;animation:nz 3s step-end infinite}.n1{animation-delay:.12s}'
         '@keyframes nz{0%{opacity:1}4%{opacity:0}100%{opacity:0}}'
         '.blink{opacity:0;animation:bl 6s step-end infinite}'
@@ -323,128 +322,6 @@ def header(lang):
         '.s0{opacity:1}}'
     )
     return svg(W, H, ''.join(body), T['title'], style)
-
-
-# ---------------------------------------------------------------- clock (CH 03, art deco)
-ME = [70, 50, 40, 26, 17, 18, 23, 7, 42, 50, 57, 47, 32, 3, 27, 46, 60, 47, 26, 28, 46, 59, 34, 67]
-AG = [17, 0, 2, 1, 1, 149, 93, 37, 100, 35, 78, 35, 63, 2, 6, 14, 108, 27, 1, 2, 39, 27, 1, 27]
-assert sum(ME) == 922 and sum(AG) == 865
-DECO = "font-family:'Josefin Sans','Century Gothic','Futura','Avenir Next',Avenir,'Trebuchet MS',sans-serif"
-GOLD, COPPER, BLUE, PETROL, CREAM = '#E2B857', '#D98A4E', '#6FB2E6', '#0E3B43', '#F3E7C4'
-CLOCK_TEXT = {
-    'en': {'ch': 'CH 03 · CLOCK', 'title': ['Who writes', 'Kapi Online,', 'hour by hour'],
-           'sub': ['Commits per hour of the day,', '28 Jul to 25 Nov 2026'],
-           'mine': 'Mine', 'ag': 'AI agents',
-           'facts': ['My peak: midnight (70)', "Agents' peak: 5 a.m. (149)",
-                     '35% of my commits land', 'between 10 p.m. and 6 a.m.'],
-           'foot': ['Left off the clock: 843 automatic', 'GitHub Actions commits.'],
-           'aria': 'A 24-hour dial of Kapi Online commits per hour: mine in copper, AI agents in blue'},
-    'pt': {'ch': 'CH 03 · RELÓGIO', 'title': ['Quem escreve', 'o Kapi Online,', 'hora a hora'],
-           'sub': ['Commits por hora do dia,', 'de 28 jul. a 25 nov. de 2026'],
-           'mine': 'Meus', 'ag': 'Agentes de IA',
-           'facts': ['Meu pico: meia-noite (70)', 'Pico dos agentes: 5h (149)',
-                     '35% dos meus commits saem', 'entre 22h e 6h'],
-           'foot': ['Fora do relógio: 843 commits', 'automáticos do GitHub Actions.'],
-           'aria': 'Um relógio de 24 horas com os commits do Kapi Online por hora: os meus em cobre, os dos agentes de IA em azul'},
-}
-
-
-def clock(lang):
-    T = CLOCK_TEXT[lang]
-    W, H, cx, cy, r0, L = 900, 540, 276, 272, 64, 160
-    mx = max(max(ME), max(AG))
-    b = [f'<rect width="{W}" height="{H}" rx="14" fill="{PETROL}"/>',
-         f'<rect x="12" y="12" width="{W - 24}" height="{H - 24}" fill="none" stroke="{GOLD}" stroke-width="2"/>',
-         f'<rect x="20" y="20" width="{W - 40}" height="{H - 40}" fill="none" stroke="{GOLD}" stroke-opacity=".45"/>']
-    for (x, y) in [(12, 12), (W - 12, 12), (12, H - 12), (W - 12, H - 12)]:  # stepped corners
-        b.append(f'<rect x="{x - 7}" y="{y - 7}" width="14" height="14" fill="{PETROL}" stroke="{GOLD}" stroke-width="2"/>')
-    # faint sunburst behind the dial
-    for i in range(48):
-        a = math.radians(i * 7.5)
-        b.append(f'<line x1="{cx + 40 * math.cos(a):.1f}" y1="{cy + 40 * math.sin(a):.1f}" '
-                 f'x2="{cx + 250 * math.cos(a):.1f}" y2="{cy + 250 * math.sin(a):.1f}" '
-                 f'stroke="{GOLD}" stroke-opacity=".05" stroke-width="1"/>')
-    # value rings
-    for v in (50, 100, 150):
-        r = r0 + L * v / mx
-        b.append(f'<circle cx="{cx}" cy="{cy}" r="{r:.1f}" fill="none" stroke="{GOLD}" stroke-opacity=".16" stroke-dasharray="2 5"/>')
-        a = math.radians(13 * 15 - 90)
-        b.append(f'<text x="{cx + r * math.cos(a) - 4:.1f}" y="{cy + r * math.sin(a) + 4:.1f}" fill="{GOLD}" '
-                 f'fill-opacity=".55" font-size="11" text-anchor="end" style="{DECO}">{v}</text>')
-    # hand (behind the towers)
-    b.append(f'<g class="hand"><line x1="{cx}" y1="{cy}" x2="{cx}" y2="{cy - r0 - L - 4}" stroke="{GOLD}" '
-             f'stroke-opacity=".5" stroke-width="2"/><path d="M{cx} {cy - r0 - L - 14}l5 9-5 9-5-9z" fill="{GOLD}" fill-opacity=".7"/></g>')
-    # towers
-    for h in range(24):
-        for k, (vals, col, off) in enumerate([(ME, COPPER, -3.3), (AG, BLUE, 3.3)]):
-            v = vals[h]
-            if not v:
-                continue
-            a = math.radians(h * 15 + off - 90)
-            r1 = r0 + L * v / mx
-            ln = r1 - r0
-            b.append(f'<line class="ray" x1="{cx + r0 * math.cos(a):.1f}" y1="{cy + r0 * math.sin(a):.1f}" '
-                     f'x2="{cx + r1 * math.cos(a):.1f}" y2="{cy + r1 * math.sin(a):.1f}" stroke="{col}" '
-                     f'stroke-width="7" stroke-dasharray="{ln:.1f}" stroke-dashoffset="{ln:.1f}" '
-                     f'style="animation-delay:{0.3 + h * 0.06 + k * 0.03:.2f}s"/>')
-    # hour ticks and labels
-    for h in range(24):
-        a = math.radians(h * 15 - 90)
-        r1, r2 = r0 + L + 10, r0 + L + (20 if h % 3 == 0 else 14)
-        b.append(f'<line x1="{cx + r1 * math.cos(a):.1f}" y1="{cy + r1 * math.sin(a):.1f}" '
-                 f'x2="{cx + r2 * math.cos(a):.1f}" y2="{cy + r2 * math.sin(a):.1f}" stroke="{GOLD}" stroke-width="{2 if h % 3 == 0 else 1}"/>')
-        if h % 3 == 0:
-            r3 = r0 + L + 34
-            b.append(f'<text x="{cx + r3 * math.cos(a):.1f}" y="{cy + r3 * math.sin(a) + 5:.1f}" fill="{GOLD}" '
-                     f'font-size="15" font-weight="600" text-anchor="middle" style="{DECO}">{h:02d}</text>')
-    b.append(f'<circle cx="{cx}" cy="{cy}" r="{r0 + L + 10}" fill="none" stroke="{GOLD}" stroke-opacity=".6"/>')
-    # medallion
-    b.append(f'<circle cx="{cx}" cy="{cy}" r="{r0 - 8}" fill="#0A2C32" stroke="{GOLD}" stroke-width="2"/>')
-    for i in range(24):
-        a = math.radians(i * 15)
-        b.append(f'<line x1="{cx + 30 * math.cos(a):.1f}" y1="{cy + 30 * math.sin(a):.1f}" x2="{cx + 50 * math.cos(a):.1f}" '
-                 f'y2="{cy + 50 * math.sin(a):.1f}" stroke="{GOLD}" stroke-opacity=".35"/>')
-    b.append(f'<circle cx="{cx}" cy="{cy}" r="28" fill="#0A2C32" stroke="{GOLD}"/>')
-    b.append(f'<text x="{cx}" y="{cy + 6}" fill="{GOLD}" font-size="17" font-weight="700" text-anchor="middle" '
-             f'letter-spacing="1" style="{DECO}">24H</text>')
-
-    # text column
-    X = 572
-    y = 70
-    b.append(f'<text x="{X}" y="{y}" fill="{GOLD}" font-size="14" letter-spacing="3" style="{DECO}">{escape(T["ch"])}</text>')
-    y += 16
-    b.append(f'<line x1="{X}" y1="{y}" x2="{X + 280}" y2="{y}" stroke="{GOLD}" stroke-opacity=".5"/>')
-    y += 42
-    for line in T['title']:
-        b.append(f'<text x="{X}" y="{y}" fill="{CREAM}" font-size="32" font-weight="600" style="{DECO}">{escape(line)}</text>')
-        y += 38
-    y += 4
-    for line in T['sub']:
-        b.append(f'<text x="{X}" y="{y}" fill="{CREAM}" fill-opacity=".75" font-size="15" style="{DECO}">{escape(line)}</text>')
-        y += 21
-    y += 18
-    for col, name, total in [(COPPER, T['mine'], 922), (BLUE, T['ag'], 865)]:
-        b.append(f'<rect x="{X}" y="{y - 13}" width="16" height="16" fill="{col}"/>')
-        b.append(f'<text x="{X + 26}" y="{y}" fill="{CREAM}" font-size="17" style="{DECO}">{escape(name)}</text>')
-        b.append(f'<text x="{X + 280}" y="{y}" fill="{col}" font-size="20" font-weight="700" text-anchor="end" style="{DECO}">{total}</text>')
-        y += 30
-    y += 8
-    for i, line in enumerate(T['facts']):
-        if i != 3:
-            b.append(f'<path d="M{X + 4} {y - 10}l4 4-4 4-4-4z" fill="{GOLD}"/>')
-        b.append(f'<text x="{X + 16}" y="{y}" fill="{CREAM}" font-size="15" style="{DECO}">{escape(line)}</text>')
-        y += 21
-    y += 12
-    for line in T['foot']:
-        b.append(f'<text x="{X}" y="{y}" fill="{CREAM}" fill-opacity=".55" font-size="13" style="{DECO}">{escape(line)}</text>')
-        y += 18
-
-    style = ('.ray{animation:grow 1.3s cubic-bezier(.2,.7,.2,1) forwards}'
-             '@keyframes grow{to{stroke-dashoffset:0}}'
-             f'.hand{{transform-origin:{cx}px {cy}px;animation:spin 24s linear infinite}}'
-             '@keyframes spin{to{transform:rotate(360deg)}}'
-             '@media (prefers-reduced-motion:reduce){.ray{animation:none;stroke-dashoffset:0}.hand{animation:none}}')
-    return svg(W, H, ''.join(b), T['aria'], style)
 
 
 # ---------------------------------------------------------------- passport (CH 05)
@@ -557,126 +434,26 @@ def passport(lang):
     return svg(W, H, defs + ''.join(b), T['aria'], style)
 
 
-# ---------------------------------------------------------------- blueprint (CH 07)
-BP_FONT = "font-family:'Courier New',Courier,monospace"
-BP_TEXT = {
-    'en': {'title': 'HOW I WORK WITH AI', 'sub': 'I use Claude Code and Gemini CLI. Every task goes through this loop:',
-           'steps': [('01', ['WRITE THE', "PROJECT'S RULES"], 'AGENTS.md'),
-                     ('02', ['SPLIT THE WORK', 'INTO SMALL TASKS'], ''),
-                     ('03', ['THE AGENTS', 'WRITE THE CODE'], 'CLAUDE CODE · GEMINI CLI'),
-                     ('04', ['I REVIEW WHAT', 'COMES BACK'], ''),
-                     ('05', ['I TEST BEFORE', 'SHIPPING'], '')],
-           'next': 'NEXT TASK', 'dim': '865 COMMITS BY AGENTS IN KAPI ONLINE · JUL – NOV 2026',
-           'detail': 'DETAIL 1: REAL LINES FROM KAPI ONLINE\'S AGENTS.md, THE RULES AGENTS READ FIRST',
-           'block': [('PROJECT', 'AGENT WORKFLOW'), ('SHEET', '07 / 11'), ('DRAWN BY', 'O. K. M.'), ('SCALE', '1 : 1')],
-           'aria': 'Blueprint of my AI workflow: write the rules, split the work, agents write the code, I review, I test'},
-    'pt': {'title': 'COMO TRABALHO COM IA', 'sub': 'Uso Claude Code e Gemini CLI. O ciclo de cada tarefa:',
-           'steps': [('01', ['ESCREVO AS', 'REGRAS DO PROJETO'], 'AGENTS.md'),
-                     ('02', ['DIVIDO O TRABALHO', 'EM TAREFAS PEQUENAS'], ''),
-                     ('03', ['OS AGENTES', 'ESCREVEM O CÓDIGO'], 'CLAUDE CODE · GEMINI CLI'),
-                     ('04', ['REVISO O QUE', 'VOLTA'], ''),
-                     ('05', ['TESTO ANTES', 'DE PUBLICAR'], '')],
-           'next': 'PRÓXIMA TAREFA', 'dim': '865 COMMITS DE AGENTES NO KAPI ONLINE · JUL – NOV 2026',
-           'detail': 'DETALHE 1: TRECHOS REAIS DO AGENTS.md DO KAPI ONLINE, AS REGRAS QUE OS AGENTES LEEM ANTES',
-           'block': [('PROJETO', 'FLUXO COM AGENTES'), ('FOLHA', '07 / 11'), ('DESENHO', 'O. K. M.'), ('ESCALA', '1 : 1')],
-           'aria': 'Planta do meu fluxo com IA: escrevo as regras, divido o trabalho, os agentes escrevem o código, eu reviso e testo'},
-}
-AGENTS_LINES = [
-    '- NEVER use emojis in any UI, text, logs, or code.',
-    '- NEVER use floating text [...] to substitute for in-game visual effects.',
-    '- Several agents often work in this folder at the same time,',
-    '  so commit only your own changes.',
-]
-
-
-def blueprint(lang):
-    T = BP_TEXT[lang]
-    W, H = 900, 500
-    ink = '#EAF2FF'
-    b = [f'<rect width="{W}" height="{H}" rx="14" fill="#1C4C86"/>']
-    for x in range(0, W, 20):
-        b.append(f'<line x1="{x}" y1="0" x2="{x}" y2="{H}" stroke="#FFF" stroke-opacity="{.13 if x % 100 == 0 else .05}"/>')
-    for y in range(0, H, 20):
-        b.append(f'<line x1="0" y1="{y}" x2="{W}" y2="{y}" stroke="#FFF" stroke-opacity="{.13 if y % 100 == 0 else .05}"/>')
-    b.append(f'<rect x="14" y="14" width="{W - 28}" height="{H - 28}" fill="none" stroke="{ink}" stroke-width="2"/>')
-    b.append(f'<rect x="20" y="20" width="{W - 40}" height="{H - 40}" fill="none" stroke="{ink}" stroke-opacity=".5"/>')
-    b.append(f'<text x="44" y="62" fill="{ink}" font-size="24" font-weight="700" letter-spacing="4" style="{BP_FONT}">{escape(T["title"])}</text>')
-    b.append(f'<text x="44" y="86" fill="{ink}" fill-opacity=".8" font-size="14" style="{BP_FONT}">{escape(T["sub"])}</text>')
-    bw, bh, by = 148, 104, 150
-    ay = by + 46  # arrows and the moving task run between the number and the label
-    xs = [44 + i * 168 for i in range(5)]  # 20 px gaps for the arrows
-    # dimension line over the agent boxes
-    b.append(f'<g stroke="{ink}" stroke-opacity=".75"><line x1="{xs[0]}" y1="124" x2="{xs[4] + bw}" y2="124"/>'
-             f'<line x1="{xs[0]}" y1="116" x2="{xs[0]}" y2="140"/><line x1="{xs[4] + bw}" y1="116" x2="{xs[4] + bw}" y2="140"/></g>')
-    b.append(f'<path d="M{xs[0]} 124l9-4v8zM{xs[4] + bw} 124l-9-4v8z" fill="{ink}"/>')
-    tw = len(T['dim']) * 7.2 + 16
-    mid = (xs[0] + xs[4] + bw) / 2
-    b.append(f'<rect x="{mid - tw / 2:.1f}" y="114" width="{tw:.1f}" height="20" fill="#1C4C86"/>')
-    b.append(f'<text x="{mid:.1f}" y="128" fill="{ink}" font-size="12" text-anchor="middle" style="{BP_FONT}">{escape(T["dim"])}</text>')
-    for i, (x, (num, lines, tag)) in enumerate(zip(xs, T['steps'])):
-        b.append(f'<rect x="{x}" y="{by}" width="{bw}" height="{bh}" fill="#1C4C86" stroke="{ink}" stroke-width="2"/>')
-        b.append(f'<text x="{x + 12}" y="{by + 30}" fill="{ink}" font-size="24" font-weight="700" style="{BP_FONT}">{num}</text>')
-        for j, line in enumerate(lines):
-            b.append(f'<text x="{x + 10}" y="{by + 72 + j * 17}" fill="{ink}" font-size="11" font-weight="700" style="{BP_FONT}">{escape(line)}</text>')
-        if tag:
-            b.append(f'<text x="{x + bw / 2}" y="{by + bh + 18}" fill="{ink}" fill-opacity=".75" font-size="10.5" '
-                     f'text-anchor="middle" style="{BP_FONT}">{escape(tag)}</text>')
-        if i < 4:
-            x1, x2 = x + bw, xs[i + 1]
-            b.append(f'<line class="flow" x1="{x1 + 2}" y1="{ay}" x2="{x2 - 8}" y2="{ay}" stroke="{ink}" stroke-width="2" stroke-dasharray="6 5"/>')
-            b.append(f'<path d="M{x2 - 2} {ay}l-9-5v10z" fill="{ink}"/>')
-    # return path: 05 back to 02
-    ry = by + bh + 44
-    x5, x2 = xs[4] + bw / 2, xs[1] + bw / 2
-    b.append(f'<path class="flow" d="M{x5} {by + bh}V{ry}H{x2}V{by + bh + 10}" fill="none" stroke="{ink}" stroke-width="2" stroke-dasharray="6 5"/>')
-    b.append(f'<path d="M{x2} {by + bh + 2}l-5 9h10z" fill="{ink}"/>')
-    b.append(f'<rect x="{(x5 + x2) / 2 - 70}" y="{ry - 10}" width="140" height="20" fill="#1C4C86"/>')
-    b.append(f'<text x="{(x5 + x2) / 2}" y="{ry + 5}" fill="{ink}" font-size="12" font-weight="700" text-anchor="middle" style="{BP_FONT}">{escape(T["next"])}</text>')
-    # travelling task token
-    loop = f'M{xs[0] + bw / 2} {ay}H{x5}V{ry}H{x2}V{ay}'
-    b.append(f'<circle r="6" fill="#FFD866" stroke="#1C4C86" stroke-width="2"><animateMotion dur="9s" repeatCount="indefinite" '
-             f'path="{loop}" keyPoints="0;1" keyTimes="0;1" calcMode="linear"/></circle>')
-    # detail: AGENTS.md excerpt
-    dy = 345
-    b.append(f'<text x="44" y="{dy}" fill="{ink}" fill-opacity=".85" font-size="11" letter-spacing="1" style="{BP_FONT}">{escape(T["detail"])}</text>')
-    b.append(f'<rect x="44" y="{dy + 10}" width="560" height="104" fill="#163E6F" stroke="{ink}" stroke-opacity=".6"/>')
-    b.append(f'<text x="56" y="{dy + 32}" fill="#FFD866" font-size="13" style="{BP_FONT}">$ head AGENTS.md</text>')
-    for i, line in enumerate(AGENTS_LINES):
-        b.append(f'<text x="56" y="{dy + 52 + i * 16}" fill="{ink}" font-size="12" style="{BP_FONT}" xml:space="preserve">{escape(line)}</text>')
-    # title block
-    tx, ty0, tw2, rh = 624, dy + 10, 232, 26
-    b.append(f'<rect x="{tx}" y="{ty0}" width="{tw2}" height="{rh * 4}" fill="#163E6F" stroke="{ink}" stroke-width="1.5"/>')
-    for i, (k, v) in enumerate(T['block']):
-        yy = ty0 + i * rh
-        if i:
-            b.append(f'<line x1="{tx}" y1="{yy}" x2="{tx + tw2}" y2="{yy}" stroke="{ink}" stroke-opacity=".6"/>')
-        b.append(f'<text x="{tx + 10}" y="{yy + 17}" fill="{ink}" fill-opacity=".7" font-size="10" style="{BP_FONT}">{escape(k)}</text>')
-        b.append(f'<text x="{tx + tw2 - 10}" y="{yy + 17}" fill="{ink}" font-size="12" font-weight="700" text-anchor="end" style="{BP_FONT}">{escape(v)}</text>')
-    style = ('.flow{animation:dash 1.1s linear infinite}@keyframes dash{to{stroke-dashoffset:-22}}'
-             '@media (prefers-reduced-motion:reduce){.flow{animation:none}}')
-    return svg(W, H, ''.join(b), T['aria'], style)
-
-
 # ---------------------------------------------------------------- character sheet (CH 09)
 SHEET_TEXT = {
     'en': {'menu': ['STATUS', 'QUESTS', 'FEATS', 'ITEMS'], 'cls': 'IR SCHOLAR + GAME DEV (MULTICLASS)',
            'place': 'FLORIANÓPOLIS, SC',
-           'stats': [('GPA', '9.07 / 10'), ('LANGUAGES', '6'), ('MY COMMITS', '922'),
+           'stats': [('GPA', '9.07 / 10'), ('LANGUAGES', '6'), ('GAMES MADE', '3'),
                      ('ARTICLES', '2'), ('MODEL UNS RUN', '2'), ('MATH OLYMPIAD', '2')],
            'quests': 'QUESTS', 'done': 'DONE', 'active': 'ACTIVE',
            'list': [('DPU MIGRATION UNIT · 2024–25', 0), ('UN ONLINE VOLUNTEER · 2024', 0),
                     ('IFSC TUTORING + RESEARCH · 2020–22', 0), ('BA IN IR AT UFSC · TO 2027', 1),
                     ('SOUTH-SOUTH RESEARCH · 2026', 1), ('KAPI ONLINE · SINCE 07·2026', 1)],
-           'aria': 'An RPG status screen: GPA 9.07, six languages, 922 commits, two articles, and my quests'},
+           'aria': 'An RPG status screen: GPA 9.07, six languages, three games made, two articles, and my quests'},
     'pt': {'menu': ['STATUS', 'MISSÕES', 'CONQUISTAS', 'ITENS'], 'cls': 'INTERNACIONALISTA + DEV DE JOGOS',
            'place': 'FLORIANÓPOLIS, SC · MULTICLASSE',
-           'stats': [('IAA', '9,07 / 10'), ('IDIOMAS', '6'), ('COMMITS MEUS', '922'),
+           'stats': [('IAA', '9,07 / 10'), ('IDIOMAS', '6'), ('JOGOS FEITOS', '3'),
                      ('ARTIGOS', '2'), ('ONUS SIMULADAS', '2'), ('OBMEP', '2')],
            'quests': 'MISSÕES', 'done': 'CONCLUÍDA', 'active': 'EM CURSO',
            'list': [('NÚCLEO DE MIGRAÇÃO DA DPU · 2024–25', 0), ('VOLUNTÁRIO ONLINE DA ONU · 2024', 0),
                     ('MONITORIA E PESQUISA NO IFSC · 2020–22', 0), ('RI NA UFSC · ATÉ 2027', 1),
                     ('PESQUISA SUL-SUL · 2026', 1), ('KAPI ONLINE · DESDE 07·2026', 1)],
-           'aria': 'Uma tela de status de RPG: IAA 9,07, seis idiomas, 922 commits, dois artigos e as minhas missões'},
+           'aria': 'Uma tela de status de RPG: IAA 9,07, seis idiomas, três jogos feitos, dois artigos e as minhas missões'},
 }
 
 
@@ -737,33 +514,32 @@ ICONS = {
     'palette': ['..####..', '.#....#.', '#.#..#.#', '#......#', '#..##..#', '#......#', '.#....#.', '..####..'],
     'cube': ['...##...', '..#..#..', '.#....#.', '#.#..#.#', '#..##..#', '#...#..#', '.#..#.#.', '..###...'],
     'db': ['.######.', '#......#', '.######.', '#......#', '.######.', '#......#', '.######.', '........'],
-    'voice': ['...#....', '..##..#.', '####.#.#', '####.#.#', '####.#.#', '..##..#.', '...#....', '........'],
     'scroll': ['.######.', '#.#....#', '.#.###.#', '.#.....#', '.#.###.#', '.#.....#', '#.#....#', '.######.'],
     'chart': ['.......#', '......##', '...#..##', '..##.###', '.###.###', '########', '........', '........'],
     'spider': ['#..##..#', '.#.##.#.', '..####..', '########', '..####..', '.#.##.#.', '#......#', '........'],
-    'term': ['########', '#......#', '#.#....#', '#..#...#', '#.#.###.', '#......#', '########', '........'],
+    'plug': ['..#..#..', '..#..#..', '.######.', '.######.', '..####..', '...##...', '...##...', '...##...'],
+    'globe': ['..####..', '.#.##.#.', '#..##..#', '########', '#..##..#', '.#.##.#.', '..####..', '........'],
 }
 ITEMS = [  # icon, colour, name, English effect, Portuguese effect
     ('server', '#46B154', 'NODE.JS', 'GAME SERVER, 30 TICKS/S', 'SERVIDOR DO JOGO, 30 TICKS/S'),
     ('palette', '#E8667A', 'CANVAS 2D + WEBGL2', 'ART DRAWN IN CODE', 'ARTE DESENHADA EM CÓDIGO'),
     ('cube', '#7FA6E8', 'GODOT 4', 'THE 3D CLIENT', 'O CLIENTE 3D'),
     ('db', '#C9713F', 'MONGODB', 'PLAYER DATA', 'DADOS DOS JOGADORES'),
-    ('voice', '#B48CD8', 'ELEVENLABS', 'NPC VOICE LINES', 'AS FALAS DOS NPCS'),
     ('scroll', '#EDC04E', 'PYTHON', 'MICRODATA + POWER BI FILES', 'MICRODADOS + POWER BI'),
     ('chart', '#F2C94C', 'POWER BI + DAX', 'DASHBOARDS', 'PAINÉIS'),
     ('spider', '#A3ACB3', 'PLAYWRIGHT', 'THE MOODLE SCRAPER', 'O SCRAPER DO MOODLE'),
-    ('term', '#D98A4E', 'CLAUDE CODE', 'PARALLEL AGENT SESSIONS', 'AGENTES EM PARALELO'),
-    ('term', '#6FB2E6', 'GEMINI CLI', 'MORE AGENT SESSIONS', 'MAIS AGENTES'),
+    ('plug', '#D98A4E', 'SOCKET.IO', 'REAL-TIME MULTIPLAYER', 'MULTIJOGADOR EM TEMPO REAL'),
+    ('globe', '#6FB2E6', 'NGINX', 'SERVES MY SITES', 'SERVE OS MEUS SITES'),
 ]
 
 
 def items(lang):
     W, H = 900, 346
     title = 'ITEMS' if lang == 'en' else 'ITENS'
-    aria = ('An RPG items menu listing my tools: Node.js, Canvas 2D and WebGL2, Godot 4, MongoDB, ElevenLabs, '
-            'Python, Power BI with DAX, Playwright, Claude Code and Gemini CLI') if lang == 'en' else (
+    aria = ('An RPG items menu listing my tools: Node.js, Canvas 2D and WebGL2, Godot 4, MongoDB, '
+            'Python, Power BI with DAX, Playwright, Socket.IO and nginx') if lang == 'en' else (
             'Um menu de itens de RPG com as minhas ferramentas: Node.js, Canvas 2D e WebGL2, Godot 4, MongoDB, '
-            'ElevenLabs, Python, Power BI com DAX, Playwright, Claude Code e Gemini CLI')
+            'Python, Power BI com DAX, Playwright, Socket.IO e nginx')
     b = [f'<rect width="{W}" height="{H}" rx="14" fill="#0B0F2A"/>', window(16, 16, W - 32, H - 32)]
     b.append(ptext(title, 46, 44, 3, '#FFD866', shadow='#0B0F2A'))
     b.append(ptext(f'{len(ITEMS)} / 99', W - 46, 48, 2, '#B8C0E8', shadow='#0B0F2A', anchor='end'))
@@ -1003,9 +779,7 @@ def main():
     ASSETS.mkdir(exist_ok=True)
     for lang in ('en', 'pt'):
         write(f'header-{lang}.svg', header(lang))
-        write(f'clock-{lang}.svg', clock(lang))
         write(f'passport-{lang}.svg', passport(lang))
-        write(f'blueprint-{lang}.svg', blueprint(lang))
         write(f'sheet-{lang}.svg', sheet(lang))
         write(f'end-{lang}.svg', endcard(lang))
         write(f'items-{lang}.svg', items(lang))

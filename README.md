@@ -2,7 +2,7 @@
 
 <p align="center"><b>English</b> · <a href="https://github.com/tavmata/tavmata/blob/main/README.pt-BR.md">Português</a></p>
 
-I study International Relations at the Federal University of Santa Catarina (UFSC), in Florianópolis, and research migration and international law. I also build games, data dashboards and AI workflows. I don't come from computer science: I built most of what's below by directing coding agents.
+I study International Relations at the Federal University of Santa Catarina (UFSC), in Florianópolis, and research migration and international law. I also build games and data dashboards.
 
 <p align="center">
 <a href="https://mmorpg.kich.dev.br"><b>Play Kapi Online</b></a> ·
@@ -12,12 +12,6 @@ I study International Relations at the Federal University of Santa Catarina (UFS
 <a href="https://www.linkedin.com/in/ot%C3%A1vio-kich-mata-70b78b212/">LinkedIn</a> ·
 <a href="https://lattes.cnpq.br/4797477996223695">Lattes</a>
 </p>
-
-## Live
-
-<img src="https://raw.githubusercontent.com/tavmata/tavmata/output/capybara-en.svg" width="100%" alt="My GitHub contributions from the last 12 months drawn as a field of pinhões, with the capybara from the living room walking across and eating them, plus the total and my current and longest streaks">
-
-<sub>A GitHub Action redraws this every morning from my public contribution calendar.</sub>
 
 ## Tonight's lineup
 
@@ -43,7 +37,7 @@ Visitors 0, capybara 1, after 1 roll. The latest:
 </details>
 
 <details open>
-<summary><code>CH 02</code> Kapi Online · the MMORPG I make with coding agents</summary>
+<summary><code>CH 02</code> Kapi Online · the MMORPG I'm making</summary>
 <br>
 
 <a href="https://mmorpg.kich.dev.br"><img src="assets/kapi-cover.jpg" width="100%" alt="Kapi Online cover: a party of heroes fights a red dragon in a cave, under the game's stone logo"></a>
@@ -61,26 +55,14 @@ Visitors 0, capybara 1, after 1 roll. The latest:
 </tr>
 </table>
 
-Kapi Online is a 2D MMORPG made for playing in a group: five classes, boss dungeons, guilds and a market between players. A statue turns real study time into progress in the game, and an AI reads what you studied and answers with a tip and a next step, the way a teacher would. The art is drawn in code.
+Kapi Online is a 2D MMORPG made for playing in a group: five classes, boss dungeons, guilds and a market between players. A statue turns real study time into progress, and the game reviews what you studied and answers with a tip and a next step, the way a teacher would. The art is drawn in code.
 
 - A Node.js server decides every action, 30 times a second, and is built to handle 1,000 players.
 - The 2D client runs on desktop and phone. There is also a playable 3D version in Godot.
-- The repository got 2,630 commits between 28 July and 25 November 2026: 922 mine, 865 from AI agents and 843 automatic ones from GitHub Actions.
 
 It opens in the browser, with nothing to install: [mmorpg.kich.dev.br](https://mmorpg.kich.dev.br)
 
 <sub><a href="https://kich.dev.br/#kapi">CH 02 on kich.dev.br</a></sub>
-</details>
-
-<details>
-<summary><code>CH 03</code> Clock · who writes Kapi Online, hour by hour</summary>
-<br>
-
-<img src="assets/clock-en.svg" width="100%" alt="A 24-hour art deco dial. Each hour has a copper tower for my commits and a blue one for the AI agents' commits. My peak is midnight with 70 commits, the agents' peak is 5 a.m. with 149">
-
-The blue towers are Jules and the other coding agents.
-
-<sub><a href="https://kich.dev.br/#relogio">CH 03 on kich.dev.br</a></sub>
 </details>
 
 <details>
@@ -180,17 +162,6 @@ A Python script writes the whole Power BI file, with its tables, relationships, 
 </details>
 
 <details>
-<summary><code>CH 07</code> Agents · how I work with AI</summary>
-<br>
-
-<img src="assets/blueprint-en.svg" width="100%" alt="A blueprint of my workflow: 01 write the project's rules, 02 split the work into small tasks, 03 the agents write the code, 04 I review what comes back, 05 I test before shipping, then back to 02 for the next task">
-
-Several agent sessions work at once in the same repository, each on its own task. In research I use the same setup to clean microdata, build dashboards from code and turn my readings into Anki decks.
-
-<sub><a href="https://kich.dev.br/#agentes">CH 07 on kich.dev.br</a></sub>
-</details>
-
-<details>
 <summary><code>CH 08</code> Arcade · two more games, free on itch.io</summary>
 <br>
 
@@ -217,9 +188,9 @@ Both run in the browser and save progress on your device.
 <summary><code>CH 09</code> Character sheet · my CV as an RPG menu</summary>
 <br>
 
-<a href="https://kich.dev.br/#curriculo"><img src="assets/sheet-en.svg" width="100%" alt="An RPG status screen. GPA 9.07 of 10, six languages, 922 commits, two articles, two Model UNs run, two math olympiad honorable mentions. Quests done: DPU Migration Unit, UN online volunteer, IFSC tutoring and research. Active: BA at UFSC, South-South research, Kapi Online"></a>
+<a href="https://kich.dev.br/#curriculo"><img src="assets/sheet-en.svg" width="100%" alt="An RPG status screen. GPA 9.07 of 10, six languages, three games made, two articles, two Model UNs run, two math olympiad honorable mentions. Quests done: DPU Migration Unit, UN online volunteer, IFSC tutoring and research. Active: BA at UFSC, South-South research, Kapi Online"></a>
 
-<img src="assets/items-en.svg" width="100%" alt="The RPG menu's items page, listing my tools: Node.js for the game server, Canvas 2D and WebGL2 for the art, Godot 4 for the 3D client, MongoDB for player data, ElevenLabs for NPC voices, Python, Power BI with DAX, Playwright, Claude Code and Gemini CLI">
+<img src="assets/items-en.svg" width="100%" alt="The RPG menu's items page, listing my tools: Node.js for the game server, Canvas 2D and WebGL2 for the art, Godot 4 for the 3D client, MongoDB for player data, Python, Power BI with DAX, Playwright, Socket.IO for real-time multiplayer and nginx for the sites">
 
 
 The math olympiad is OBMEP, with honorable mentions in 2017 and 2019. I graduate in December 2027. The printable CV is on [kich.dev.br](https://kich.dev.br/#curriculo).
@@ -273,4 +244,4 @@ scroll down and say hey.</i>
 
 <br>
 
-<sub>The cards on this page are drawn in code, like the site: <a href="https://github.com/tavmata/tavmata/blob/main/tools/build.py">tools/build.py</a> makes the pixel room, the dice, the clock, the passport, the blueprint, the RPG menus and the test card. Two GitHub Actions keep the page moving: one redraws the contribution card every morning (<a href="https://github.com/tavmata/tavmata/blob/main/tools/graph.py">tools/graph.py</a>) and the other rolls the dice (<a href="https://github.com/tavmata/tavmata/blob/main/tools/war_dice.py">tools/war_dice.py</a>). There is also a pinhão, the araucaria seed, hidden in the room at the top. It shows up for three seconds in every loop of the TV.</sub>
+<sub>The cards on this page are drawn in code, like the site: <a href="https://github.com/tavmata/tavmata/blob/main/tools/build.py">tools/build.py</a> makes the pixel room, the dice, the passport, the RPG menus and the test card, and a GitHub Action rolls the dice (<a href="https://github.com/tavmata/tavmata/blob/main/tools/war_dice.py">tools/war_dice.py</a>). There is also a pinhão, the araucaria seed, hidden in the room at the top. It shows up for three seconds in every loop of the TV.</sub>

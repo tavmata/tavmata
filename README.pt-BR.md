@@ -2,7 +2,7 @@
 
 <p align="center"><a href="https://github.com/tavmata">English</a> · <b>Português</b></p>
 
-Estudo Relações Internacionais na Universidade Federal de Santa Catarina (UFSC), em Florianópolis, e pesquiso migração e direito internacional. Também construo jogos, painéis de dados e fluxos de trabalho com IA. Não venho da computação: quase tudo o que está aqui eu fiz coordenando agentes de código.
+Estudo Relações Internacionais na Universidade Federal de Santa Catarina (UFSC), em Florianópolis, e pesquiso migração e direito internacional. Também construo jogos e painéis de dados.
 
 <p align="center">
 <a href="https://mmorpg.kich.dev.br"><b>Jogar Kapi Online</b></a> ·
@@ -12,12 +12,6 @@ Estudo Relações Internacionais na Universidade Federal de Santa Catarina (UFSC
 <a href="https://www.linkedin.com/in/ot%C3%A1vio-kich-mata-70b78b212/">LinkedIn</a> ·
 <a href="https://lattes.cnpq.br/4797477996223695">Lattes</a>
 </p>
-
-## Ao vivo
-
-<img src="https://raw.githubusercontent.com/tavmata/tavmata/output/capybara-pt.svg" width="100%" alt="Minhas contribuições no GitHub dos últimos 12 meses desenhadas como um campo de pinhões, com a capivara da sala atravessando e comendo, mais o total e as minhas sequências atual e recorde">
-
-<sub>Uma GitHub Action redesenha isto toda manhã a partir do meu calendário público de contribuições.</sub>
 
 ## Programação de hoje
 
@@ -43,7 +37,7 @@ Visitantes 0, capivara 1, depois de 1 rolagem. As últimas:
 </details>
 
 <details open>
-<summary><code>CH 02</code> Kapi Online · o MMORPG que faço com agentes de código</summary>
+<summary><code>CH 02</code> Kapi Online · o MMORPG que estou fazendo</summary>
 <br>
 
 <a href="https://mmorpg.kich.dev.br"><img src="assets/kapi-cover.jpg" width="100%" alt="Capa do Kapi Online: um grupo de heróis enfrenta um dragão vermelho numa caverna, embaixo do logo de pedra do jogo"></a>
@@ -61,26 +55,14 @@ Visitantes 0, capivara 1, depois de 1 rolagem. As últimas:
 </tr>
 </table>
 
-O Kapi Online é um MMORPG em 2D feito para jogar em grupo: cinco classes, masmorras com chefes, guildas e um mercado entre jogadores. Uma estátua transforma tempo real de estudo em progresso no jogo, e uma IA lê o que você estudou e devolve uma dica e um próximo passo, como um professor faria. A arte é desenhada em código.
+O Kapi Online é um MMORPG em 2D feito para jogar em grupo: cinco classes, masmorras com chefes, guildas e um mercado entre jogadores. Uma estátua transforma tempo real de estudo em progresso, e o jogo avalia o que você estudou e devolve uma dica e um próximo passo, como um professor faria. A arte é desenhada em código.
 
 - Um servidor em Node.js decide cada ação, 30 vezes por segundo, e foi feito para aguentar 1.000 jogadores.
 - O cliente 2D roda no computador e no celular. Também existe uma versão 3D jogável no Godot.
-- O repositório recebeu 2.630 commits entre 28 de julho e 25 de novembro de 2026: 922 meus, 865 de agentes de IA e 843 automáticos do GitHub Actions.
 
 Abre no navegador, sem instalar nada: [mmorpg.kich.dev.br](https://mmorpg.kich.dev.br)
 
 <sub><a href="https://kich.dev.br/#kapi">CH 02 no kich.dev.br</a></sub>
-</details>
-
-<details>
-<summary><code>CH 03</code> Relógio · quem escreve o Kapi Online, hora a hora</summary>
-<br>
-
-<img src="assets/clock-pt.svg" width="100%" alt="Um relógio art déco de 24 horas. Cada hora tem uma torre cor de cobre com os meus commits e uma azul com os dos agentes de IA. Meu pico é à meia-noite, com 70 commits, e o dos agentes às 5h, com 149">
-
-As torres azuis são o Jules e os outros agentes de código.
-
-<sub><a href="https://kich.dev.br/#relogio">CH 03 no kich.dev.br</a></sub>
 </details>
 
 <details>
@@ -180,17 +162,6 @@ Um script em Python gera o arquivo inteiro do Power BI, com tabelas, relações,
 </details>
 
 <details>
-<summary><code>CH 07</code> Agentes · como trabalho com IA</summary>
-<br>
-
-<img src="assets/blueprint-pt.svg" width="100%" alt="Planta do meu fluxo de trabalho: 01 escrevo as regras do projeto, 02 divido o trabalho em tarefas pequenas, 03 os agentes escrevem o código, 04 reviso o que volta, 05 testo antes de publicar, e volta para o 02 na próxima tarefa">
-
-Várias sessões de agentes trabalham ao mesmo tempo no mesmo repositório, cada uma na sua tarefa. Na pesquisa uso o mesmo esquema para tratar microdados, montar painéis por código e transformar leituras em baralhos do Anki.
-
-<sub><a href="https://kich.dev.br/#agentes">CH 07 no kich.dev.br</a></sub>
-</details>
-
-<details>
 <summary><code>CH 08</code> Fliperama · mais dois jogos, grátis no itch.io</summary>
 <br>
 
@@ -217,9 +188,9 @@ Os dois rodam no navegador e salvam o progresso no seu aparelho.
 <summary><code>CH 09</code> Ficha · o currículo como menu de RPG</summary>
 <br>
 
-<a href="https://kich.dev.br/#curriculo"><img src="assets/sheet-pt.svg" width="100%" alt="Uma tela de status de RPG. IAA 9,07, seis idiomas, 922 commits, dois artigos, duas ONUs simuladas, duas menções na OBMEP. Missões concluídas: Núcleo de Migração da DPU, voluntário online da ONU, monitoria e pesquisa no IFSC. Em curso: RI na UFSC, pesquisa Sul-Sul, Kapi Online"></a>
+<a href="https://kich.dev.br/#curriculo"><img src="assets/sheet-pt.svg" width="100%" alt="Uma tela de status de RPG. IAA 9,07, seis idiomas, três jogos feitos, dois artigos, duas ONUs simuladas, duas menções na OBMEP. Missões concluídas: Núcleo de Migração da DPU, voluntário online da ONU, monitoria e pesquisa no IFSC. Em curso: RI na UFSC, pesquisa Sul-Sul, Kapi Online"></a>
 
-<img src="assets/items-pt.svg" width="100%" alt="A página de itens do menu de RPG, com as minhas ferramentas: Node.js no servidor do jogo, Canvas 2D e WebGL2 na arte, Godot 4 no cliente 3D, MongoDB nos dados dos jogadores, ElevenLabs nas vozes dos NPCs, Python, Power BI com DAX, Playwright, Claude Code e Gemini CLI">
+<img src="assets/items-pt.svg" width="100%" alt="A página de itens do menu de RPG, com as minhas ferramentas: Node.js no servidor do jogo, Canvas 2D e WebGL2 na arte, Godot 4 no cliente 3D, MongoDB nos dados dos jogadores, Python, Power BI com DAX, Playwright, Socket.IO no multijogador em tempo real e nginx nos sites">
 
 
 As menções honrosas na OBMEP são de 2017 e 2019, e me formo em dezembro de 2027. O currículo para imprimir está no [kich.dev.br](https://kich.dev.br/#curriculo).
@@ -273,4 +244,4 @@ Quem quiser mais um capítulo,<br>
 
 <br>
 
-<sub>Os cartões desta página são desenhados em código, como o site: o <a href="https://github.com/tavmata/tavmata/blob/main/tools/build.py">tools/build.py</a> faz a sala em pixel, os dados, o relógio, o passaporte, a planta, os menus de RPG e o padrão de teste. Duas GitHub Actions mantêm a página andando: uma redesenha o cartão de contribuições toda manhã (<a href="https://github.com/tavmata/tavmata/blob/main/tools/graph.py">tools/graph.py</a>) e a outra rola os dados (<a href="https://github.com/tavmata/tavmata/blob/main/tools/war_dice.py">tools/war_dice.py</a>). E tem um pinhão escondido na sala lá em cima. Ele aparece por três segundos a cada volta da TV.</sub>
+<sub>Os cartões desta página são desenhados em código, como o site: o <a href="https://github.com/tavmata/tavmata/blob/main/tools/build.py">tools/build.py</a> faz a sala em pixel, os dados, o passaporte, os menus de RPG e o padrão de teste, e uma GitHub Action rola os dados (<a href="https://github.com/tavmata/tavmata/blob/main/tools/war_dice.py">tools/war_dice.py</a>). E tem um pinhão escondido na sala lá em cima. Ele aparece por três segundos a cada volta da TV.</sub>
