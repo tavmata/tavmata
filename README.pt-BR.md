@@ -27,10 +27,14 @@ Esta página segue [o meu site](https://kich.dev.br): cada seção é um canal d
 <summary><code>CH 01</code> Sala · role os dados do War contra a capivara</summary>
 <br>
 
-<a href="https://github.com/tavmata/tavmata/issues/new?title=war%7Croll&body=Clique%20em%20Create%20para%20rolar%20o%20dado%20vermelho%20contra%20a%20capivara.%20O%20resultado%20aparece%20em%20github.com%2Ftavmata%20em%20cerca%20de%20um%20minuto."><img src="assets/dice-pt.svg?v=0" width="100%" alt="Dados de War: o seu dado vermelho contra o dado amarelo da capivara, com o placar até agora"></a>
+<a href="https://github.com/tavmata/tavmata/issues/new?title=war%7Croll&body=Clique%20em%20Create%20para%20rolar%20o%20dado%20vermelho%20contra%20a%20capivara.%20O%20resultado%20aparece%20em%20github.com%2Ftavmata%20em%20cerca%20de%20um%20minuto."><img src="assets/dice-pt.svg?v=1" width="100%" alt="Dados de War: o seu dado vermelho contra o dado amarelo da capivara, com o placar até agora"></a>
 
 <!-- dice:start -->
-Ninguém rolou ainda. Visitantes 0, capivara 0.
+Visitantes 0, capivara 1, depois de 1 rolagem. As últimas:
+
+| Jogador | Ataque | Defesa | Resultado |
+| :-- | :-: | :-: | :-- |
+| [tavmata](https://github.com/tavmata) | 2 | 4 | a defesa segura |
 <!-- dice:end -->
 
 [Role o dado vermelho](https://github.com/tavmata/tavmata/issues/new?title=war%7Croll&body=Clique%20em%20Create%20para%20rolar%20o%20dado%20vermelho%20contra%20a%20capivara.%20O%20resultado%20aparece%20em%20github.com%2Ftavmata%20em%20cerca%20de%20um%20minuto.). Você ataca, a capivara defende com o dado amarelo, e empate fica com a defesa, como no War. O link abre uma issue neste repositório, e uma GitHub Action rola os dois dados, coloca o resultado aqui e fecha a issue, em geral em menos de um minuto. Precisa de uma conta no GitHub, e cada jogador rola uma vez a cada 10 minutos.

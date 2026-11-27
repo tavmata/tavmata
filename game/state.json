@@ -1,6 +1,15 @@
 {
  "visitors": 0,
- "capybara": 0,
- "total": 0,
- "rolls": []
+ "capybara": 1,
+ "total": 1,
+ "rolls": [
+  {
+   "n": 1,
+   "login": "tavmata",
+   "red": 2,
+   "yellow": 4,
+   "at": "2026-11-27T08:35:01+00:00",
+   "issue": 1
+  }
+ ]
 }

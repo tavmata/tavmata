@@ -27,10 +27,14 @@ This page follows [my site](https://kich.dev.br): every section is a TV channel 
 <summary><code>CH 01</code> Living room · roll the War dice against the capybara</summary>
 <br>
 
-<a href="https://github.com/tavmata/tavmata/issues/new?title=war%7Croll&body=Press%20Create%20to%20roll%20the%20red%20die%20against%20the%20capybara.%20The%20result%20shows%20up%20on%20github.com%2Ftavmata%20in%20about%20a%20minute."><img src="assets/dice-en.svg?v=0" width="100%" alt="War dice: your red die against the capybara's yellow die, with the score so far"></a>
+<a href="https://github.com/tavmata/tavmata/issues/new?title=war%7Croll&body=Press%20Create%20to%20roll%20the%20red%20die%20against%20the%20capybara.%20The%20result%20shows%20up%20on%20github.com%2Ftavmata%20in%20about%20a%20minute."><img src="assets/dice-en.svg?v=1" width="100%" alt="War dice: your red die against the capybara's yellow die, with the score so far"></a>
 
 <!-- dice:start -->
-Nobody has rolled yet. Visitors 0, capybara 0.
+Visitors 0, capybara 1, after 1 roll. The latest:
+
+| Player | Attack | Defence | Result |
+| :-- | :-: | :-: | :-- |
+| [tavmata](https://github.com/tavmata) | 2 | 4 | the defence holds |
 <!-- dice:end -->
 
 [Roll the red die](https://github.com/tavmata/tavmata/issues/new?title=war%7Croll&body=Press%20Create%20to%20roll%20the%20red%20die%20against%20the%20capybara.%20The%20result%20shows%20up%20on%20github.com%2Ftavmata%20in%20about%20a%20minute.). You attack, the capybara defends with the yellow die, and ties go to the defence, as in War. The link opens an issue on this repository, and a GitHub Action rolls both dice, puts the result here and closes the issue, usually within a minute. You need a GitHub account, and each player gets one roll every 10 minutes.
