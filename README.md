@@ -1,5 +1,7 @@
 # Otávio Kich Mata
 
+*Versão em português no fim da página.*
+
 I study International Relations at the Federal University of Santa Catarina (UFSC) in Florianópolis, Brazil, and research migration and international law. I also build games, data dashboards and AI workflows.
 
 I came to code without a computer science background. Most of what I ship today I build by directing coding agents (Claude Code, Gemini CLI): I write the project rules, split the work into small tasks, review what comes back and test before it goes live.
@@ -48,6 +50,62 @@ JavaScript, Node.js, Python, Godot, Power BI, Claude Code, Gemini CLI
 ### Languages
 
 Portuguese (native), English (C2), Spanish, French (B2), basic German and Mandarin
+
+---
+
+<details>
+<summary><b>Versão em português</b></summary>
+
+<br>
+
+Estudo Relações Internacionais na UFSC, em Florianópolis, e pesquiso migração e direito internacional. Também construo jogos, painéis de dados e fluxos de trabalho com IA.
+
+Cheguei na programação sem vir da computação. Quase tudo o que publico hoje eu faço coordenando agentes de código (Claude Code, Gemini CLI): escrevo as regras do projeto, divido o trabalho em tarefas pequenas, reviso o que volta e testo antes de publicar.
+
+**Site:** [kich.dev.br](https://kich.dev.br), onze canais, cada um desenhado num estilo diferente
+
+### Kapi Online
+
+Um MMORPG em 2D que roda no navegador, no computador e no celular. Cinco classes, masmorras com chefes, guildas, mercado entre jogadores e uma estátua onde tempo real de estudo vira progresso no jogo. Uma IA avalia o que o jogador estudou e devolve uma dica e um próximo passo, como um professor.
+
+- Servidor em Node.js que decide cada ação, 30 vezes por segundo, feito para aguentar 1.000 jogadores
+- Cliente 2D no navegador e uma versão 3D jogável no Godot
+- 2.630 commits de julho a novembro de 2026: 922 meus, 865 de agentes de IA e o resto do GitHub Actions
+
+[Jogar no navegador](https://mmorpg.kich.dev.br)
+
+### Pesquisa
+
+Direito internacional público, políticas migratórias, direitos humanos e constitucionalismo latino-americano.
+
+- **Migração Sul-Sul para o Brasil** (em andamento): análise dos microdados do SISMIGRA sobre imigrantes da Ásia e da África, de 2010 a 2026, com perfil, amparo legal e inserção no trabalho. O painel de sete páginas no Power BI sai de um script em Python (tabelas, relações, medidas DAX e páginas), então dado novo é só rodar um comando e o painel inteiro é refeito. Repositório: [painel-sul-sul-sismigra](https://github.com/tavmata/painel-sul-sul-sismigra)
+- Dois artigos publicados (Qualis B3+) sobre educação financeira e tomada de decisão, um submetido, e coautoria em livros
+- Três iniciações científicas (PIBIC e EIRENÈ) sobre constitucionalismo latino-americano, com trabalhos no ADM 2024, no BELS 2024 e no V SEPERI
+
+### Fora do código
+
+- **Defensoria Pública da União, Núcleo de Migração**, 2024 a 2025: atendi migrantes, refugiados e solicitantes de refúgio em inglês, espanhol e francês, e redigi peças e requerimentos de regularização migratória
+- **Voluntários das Nações Unidas, UNRISD**, 2024: pesquisa remota e análise de políticas ligadas aos ODS
+- Organizei duas edições do UFSCMUN e escrevi guias de estudo e regras da simulação
+
+### Outros projetos
+
+| Projeto | O que é |
+| --- | --- |
+| [Pinball Heroes](https://otaviokmkm.itch.io/pinball-heroes) | Pinball com RPG: você lança cada herói na mesa, campanha com 30 fases. Grátis no itch.io |
+| [Clair Tactics](https://otaviokmkm.itch.io/clair-tactics) | RPG tático por turnos num tabuleiro 3D, com tempo certo de golpes e defesas. Grátis no itch.io |
+| [ufsc-moodle-scraper](https://github.com/tavmata/ufsc-moodle-scraper) | Scraper em Python + Playwright para o Moodle da UFSC e outros Moodle 4.x |
+| [kapistudios](https://github.com/tavmata/kapistudios) | Site da Kapi Studios |
+
+### Ferramentas
+
+JavaScript, Node.js, Python, Godot, Power BI, Claude Code, Gemini CLI
+
+### Idiomas
+
+Português (nativo), inglês (C2), espanhol, francês (B2) e o básico de alemão e mandarim
+
+</details>
 
 ---
 
