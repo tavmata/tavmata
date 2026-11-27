@@ -13,9 +13,30 @@ I study International Relations at the Federal University of Santa Catarina (UFS
 <a href="https://lattes.cnpq.br/4797477996223695">Lattes</a>
 </p>
 
+## Live
+
+<img src="https://raw.githubusercontent.com/tavmata/tavmata/output/capybara-en.svg" width="100%" alt="My GitHub contributions from the last 12 months drawn as a field of pinhões, with the capybara from the living room walking across and eating them, plus the total and my current and longest streaks">
+
+<sub>A GitHub Action redraws this every morning from my public contribution calendar.</sub>
+
 ## Tonight's lineup
 
 This page follows [my site](https://kich.dev.br): every section is a TV channel drawn in its own style. Open one to tune in.
+
+<details open>
+<summary><code>CH 01</code> Living room · roll the War dice against the capybara</summary>
+<br>
+
+<a href="https://github.com/tavmata/tavmata/issues/new?title=war%7Croll&body=Press%20Create%20to%20roll%20the%20red%20die%20against%20the%20capybara.%20The%20result%20shows%20up%20on%20github.com%2Ftavmata%20in%20about%20a%20minute."><img src="assets/dice-en.svg?v=0" width="100%" alt="War dice: your red die against the capybara's yellow die, with the score so far"></a>
+
+<!-- dice:start -->
+Nobody has rolled yet. Visitors 0, capybara 0.
+<!-- dice:end -->
+
+[Roll the red die](https://github.com/tavmata/tavmata/issues/new?title=war%7Croll&body=Press%20Create%20to%20roll%20the%20red%20die%20against%20the%20capybara.%20The%20result%20shows%20up%20on%20github.com%2Ftavmata%20in%20about%20a%20minute.). You attack, the capybara defends with the yellow die, and ties go to the defence, as in War. The link opens an issue on this repository, and a GitHub Action rolls both dice, puts the result here and closes the issue, usually within a minute. You need a GitHub account, and each player gets one roll every 10 minutes.
+
+<sub><a href="https://kich.dev.br/#sala">CH 01 on kich.dev.br</a>, where the dice roll with a click and no account</sub>
+</details>
 
 <details open>
 <summary><code>CH 02</code> Kapi Online · the MMORPG I make with coding agents</summary>
@@ -194,6 +215,9 @@ Both run in the browser and save progress on your device.
 
 <a href="https://kich.dev.br/#curriculo"><img src="assets/sheet-en.svg" width="100%" alt="An RPG status screen. GPA 9.07 of 10, six languages, 922 commits, two articles, two Model UNs run, two math olympiad honorable mentions. Quests done: DPU Migration Unit, UN online volunteer, IFSC tutoring and research. Active: BA at UFSC, South-South research, Kapi Online"></a>
 
+<img src="assets/items-en.svg" width="100%" alt="The RPG menu's items page, listing my tools: Node.js for the game server, Canvas 2D and WebGL2 for the art, Godot 4 for the 3D client, MongoDB for player data, ElevenLabs for NPC voices, Python, Power BI with DAX, Playwright, Claude Code and Gemini CLI">
+
+
 The math olympiad is OBMEP, with honorable mentions in 2017 and 2019. I graduate in December 2027. The printable CV is on [kich.dev.br](https://kich.dev.br/#curriculo).
 
 <sub><a href="https://kich.dev.br/#curriculo">CH 09 on kich.dev.br</a></sub>
@@ -245,4 +269,4 @@ scroll down and say hey.</i>
 
 <br>
 
-<sub>The cards on this page are drawn in code, like the site: <a href="https://github.com/tavmata/tavmata/blob/main/tools/build.py">tools/build.py</a> makes the pixel room, the clock, the passport, the blueprint, the RPG menu and the test card. There is also a pinhão, the araucaria seed, hidden in the room at the top. It shows up for three seconds in every loop of the TV.</sub>
+<sub>The cards on this page are drawn in code, like the site: <a href="https://github.com/tavmata/tavmata/blob/main/tools/build.py">tools/build.py</a> makes the pixel room, the dice, the clock, the passport, the blueprint, the RPG menus and the test card. Two GitHub Actions keep the page moving: one redraws the contribution card every morning (<a href="https://github.com/tavmata/tavmata/blob/main/tools/graph.py">tools/graph.py</a>) and the other rolls the dice (<a href="https://github.com/tavmata/tavmata/blob/main/tools/war_dice.py">tools/war_dice.py</a>). There is also a pinhão, the araucaria seed, hidden in the room at the top. It shows up for three seconds in every loop of the TV.</sub>

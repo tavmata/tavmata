@@ -64,7 +64,7 @@ F = {
     '9': ['.###.', '#...#', '#...#', '.####', '....#', '....#', '.###.'],
     ' ': ['..', '..', '..', '..', '..', '..', '..'],
     '.': ['.', '.', '.', '.', '.', '.', '#'],
-    ',': ['..', '..', '..', '..', '..', '.#', '#.'],
+    ',': ['..', '..', '..', '..', '.#', '.#', '#.'],
     ':': ['.', '.', '#', '.', '.', '#', '.'],
     '·': ['.', '.', '.', '#', '.', '.', '.'],
     '-': ['...', '...', '...', '###', '...', '...', '...'],
@@ -79,6 +79,9 @@ F = {
     '>': ['#...', '.#..', '..#.', '...#', '..#.', '.#..', '#...'],
     '<': ['...#', '..#.', '.#..', '#...', '.#..', '..#.', '...#'],
     '▶': ['#...', '##..', '###.', '####', '###.', '##..', '#...'],
+    '×': ['.....', '.....', '#...#', '.#.#.', '..#..', '.#.#.', '#...#'],
+    '#': ['.#.#.', '.#.#.', '#####', '.#.#.', '#####', '.#.#.', '.#.#.'],
+    '@': ['.###.', '#...#', '#.###', '#.#.#', '#.###', '#....', '.####'],
 }
 ACCENT = {
     'acute': ['...#.', '..#..'], 'grave': ['.#...', '..#..'],
@@ -728,6 +731,148 @@ def sheet(lang):
     return svg(W, H, defs + ''.join(b), T['aria'], style)
 
 
+# ---------------------------------------------------------------- items (CH 09, the RPG menu's ITEMS page)
+ICONS = {
+    'server': ['########', '#......#', '#.##...#', '########', '#......#', '#.##...#', '########', '........'],
+    'palette': ['..####..', '.#....#.', '#.#..#.#', '#......#', '#..##..#', '#......#', '.#....#.', '..####..'],
+    'cube': ['...##...', '..#..#..', '.#....#.', '#.#..#.#', '#..##..#', '#...#..#', '.#..#.#.', '..###...'],
+    'db': ['.######.', '#......#', '.######.', '#......#', '.######.', '#......#', '.######.', '........'],
+    'voice': ['...#....', '..##..#.', '####.#.#', '####.#.#', '####.#.#', '..##..#.', '...#....', '........'],
+    'scroll': ['.######.', '#.#....#', '.#.###.#', '.#.....#', '.#.###.#', '.#.....#', '#.#....#', '.######.'],
+    'chart': ['.......#', '......##', '...#..##', '..##.###', '.###.###', '########', '........', '........'],
+    'spider': ['#..##..#', '.#.##.#.', '..####..', '########', '..####..', '.#.##.#.', '#......#', '........'],
+    'term': ['########', '#......#', '#.#....#', '#..#...#', '#.#.###.', '#......#', '########', '........'],
+}
+ITEMS = [  # icon, colour, name, English effect, Portuguese effect
+    ('server', '#46B154', 'NODE.JS', 'GAME SERVER, 30 TICKS/S', 'SERVIDOR DO JOGO, 30 TICKS/S'),
+    ('palette', '#E8667A', 'CANVAS 2D + WEBGL2', 'ART DRAWN IN CODE', 'ARTE DESENHADA EM CÓDIGO'),
+    ('cube', '#7FA6E8', 'GODOT 4', 'THE 3D CLIENT', 'O CLIENTE 3D'),
+    ('db', '#C9713F', 'MONGODB', 'PLAYER DATA', 'DADOS DOS JOGADORES'),
+    ('voice', '#B48CD8', 'ELEVENLABS', 'NPC VOICE LINES', 'AS FALAS DOS NPCS'),
+    ('scroll', '#EDC04E', 'PYTHON', 'MICRODATA + POWER BI FILES', 'MICRODADOS + POWER BI'),
+    ('chart', '#F2C94C', 'POWER BI + DAX', 'DASHBOARDS', 'PAINÉIS'),
+    ('spider', '#A3ACB3', 'PLAYWRIGHT', 'THE MOODLE SCRAPER', 'O SCRAPER DO MOODLE'),
+    ('term', '#D98A4E', 'CLAUDE CODE', 'PARALLEL AGENT SESSIONS', 'AGENTES EM PARALELO'),
+    ('term', '#6FB2E6', 'GEMINI CLI', 'MORE AGENT SESSIONS', 'MAIS AGENTES'),
+]
+
+
+def items(lang):
+    W, H = 900, 346
+    title = 'ITEMS' if lang == 'en' else 'ITENS'
+    aria = ('An RPG items menu listing my tools: Node.js, Canvas 2D and WebGL2, Godot 4, MongoDB, ElevenLabs, '
+            'Python, Power BI with DAX, Playwright, Claude Code and Gemini CLI') if lang == 'en' else (
+            'Um menu de itens de RPG com as minhas ferramentas: Node.js, Canvas 2D e WebGL2, Godot 4, MongoDB, '
+            'ElevenLabs, Python, Power BI com DAX, Playwright, Claude Code e Gemini CLI')
+    b = [f'<rect width="{W}" height="{H}" rx="14" fill="#0B0F2A"/>', window(16, 16, W - 32, H - 32)]
+    b.append(ptext(title, 46, 44, 3, '#FFD866', shadow='#0B0F2A'))
+    b.append(ptext(f'{len(ITEMS)} / 99', W - 46, 48, 2, '#B8C0E8', shadow='#0B0F2A', anchor='end'))
+    b.append(f'<line x1="44" y1="78" x2="{W - 44}" y2="78" stroke="#8B95C9" stroke-width="2"/>')
+    for i, (icon, col, name, en, pt) in enumerate(ITEMS):
+        x = 46 + (i // 5) * 418
+        y = 96 + (i % 5) * 46
+        b.append(f'<rect x="{x}" y="{y}" width="36" height="36" rx="4" fill="#0B0F2A" fill-opacity=".55" stroke="#8B95C9"/>')
+        pts = [(c, r) for r, line in enumerate(ICONS[icon]) for c, ch in enumerate(line) if ch == '#']
+        b.append(f'<g class="it" style="animation-delay:{i * 0.12:.2f}s">{pix(pts, col, x + 6, y + 6, 3)}</g>')
+        b.append(ptext(name, x + 50, y + 2, 2, '#F4F6F6', shadow='#0B0F2A'))
+        b.append(ptext(en if lang == 'en' else pt, x + 50, y + 22, 2, '#B8C0E8', shadow='#0B0F2A'))
+    defs = ('<defs><linearGradient id="win" x1="0" y1="0" x2="0" y2="1">'
+            '<stop offset="0" stop-color="#3A54C8"/><stop offset="1" stop-color="#121D6E"/></linearGradient></defs>')
+    style = ('.it{animation:glint 6s ease-in-out infinite}@keyframes glint{0%,88%,100%{opacity:1}94%{opacity:.35}}'
+             '@media (prefers-reduced-motion:reduce){.it{animation:none}}')
+    return svg(W, H, defs + ''.join(b), aria, style)
+
+
+# ---------------------------------------------------------------- War dice (CH 01, played through issues)
+DICE_TEXT = {
+    'en': {'atk': 'ATTACK', 'def': 'DEFENCE', 'capy': 'CAPYBARA', 'you': 'YOU',
+           'line': 'ATTACK {a} × {d} DEFENCE', 'win': 'THE ATTACK WINS', 'hold': 'THE DEFENCE HOLDS',
+           'none1': 'YOUR TURN.', 'none2': 'CLICK THE DICE TO ROLL',
+           'score': 'VISITORS {v} · CAPYBARA {c}', 'rule': 'TIES GO TO THE DEFENCE, AS IN WAR',
+           'aria': 'War dice against the capybara. {s}'},
+    'pt': {'atk': 'ATAQUE', 'def': 'DEFESA', 'capy': 'CAPIVARA', 'you': 'VOCÊ',
+           'line': 'ATAQUE {a} × {d} DEFESA', 'win': 'O ATAQUE LEVA', 'hold': 'A DEFESA SEGURA',
+           'none1': 'SUA VEZ.', 'none2': 'CLIQUE NOS DADOS PARA ROLAR',
+           'score': 'VISITANTES {v} · CAPIVARA {c}', 'rule': 'EMPATE FICA COM A DEFESA, COMO NO WAR',
+           'aria': 'Dados de War contra a capivara. {s}'},
+}
+
+
+def die(colour, face, x, y, s):
+    groups = {}
+    for r, line in enumerate(ROOM['dice'][colour][str(face)]):
+        for c, ch in enumerate(line):
+            groups.setdefault(ROOM['pal'][ch], []).append((c, r))
+    return ''.join(pix(v, col, x, y, s) for col, v in groups.items())
+
+
+def dice_card(lang, state):
+    T = DICE_TEXT[lang]
+    W, H = 900, 226
+    last = state['rolls'][0] if state['rolls'] else None
+    red, yel = (last['red'], last['yellow']) if last else (6, 2)  # the room's dice at rest
+    b = [f'<rect width="{W}" height="{H}" rx="14" fill="#10242B"/>',
+         f'<rect x="12" y="12" width="{W - 24}" height="{H - 24}" rx="10" fill="#0A171C"/>']
+    for colour, final, x, order in (('red', red, 130, [3, 6, 1, 4, 2, 5]), ('yel', yel, 700, [5, 2, 6, 1, 4, 3])):
+        for k, face in enumerate(order):
+            b.append(f'<g class="spin" style="animation-delay:{k * 0.16:.2f}s">{die(colour, face, x, 48, 10)}</g>')
+        b.append(f'<g class="final">{die(colour, final, x, 48, 10)}</g>')
+    capy = []
+    for y, line in enumerate(ROOM['capybara']):
+        for x, ch in enumerate(line):
+            if ch != '.':
+                capy.append(((x, y), ROOM['pal'][ch]))
+    by_col = {}
+    for p, col in capy:
+        by_col.setdefault(col, []).append(p)
+    b.append(''.join(pix(v, col, 628, 82, 2) for col, v in by_col.items()))
+    who = ('@' + last['login'])[:17].upper() if last else T['you']
+    b.append(ptext(who, 165, 138, 2, '#E8483C', anchor='middle'))
+    b.append(ptext(T['atk'], 165, 162, 2, '#6E767C', anchor='middle'))
+    b.append(ptext(T['capy'], 700, 138, 2, '#EDC04E', anchor='middle'))
+    b.append(ptext(T['def'], 700, 162, 2, '#6E767C', anchor='middle'))
+    if last:
+        b.append(ptext(T['line'].format(a=red, d=yel), 425, 50, 3, '#F2E6B6', anchor='middle', shadow='#4A2412'))
+        verdict = T['win'] if red > yel else T['hold']
+        b.append(f'<g class="final">{ptext(verdict, 425, 86, 3, "#E8483C" if red > yel else "#EDC04E", anchor="middle")}</g>')
+    else:
+        b.append(ptext(T['none1'], 425, 50, 3, '#F2E6B6', anchor='middle', shadow='#4A2412'))
+        b.append(ptext(T['none2'], 425, 88, 2, '#46B154', anchor='middle'))
+    b.append(ptext(T['score'].format(v=state['visitors'], c=state['capybara']), 425, 128, 2, '#A3ACB3', anchor='middle'))
+    b.append(ptext(T['rule'], W // 2, 196, 2, '#46B154', anchor='middle'))
+    summary = (T['line'].format(a=red, d=yel) + ', ' + (T['win'] if red > yel else T['hold'])).capitalize() if last else T['none1']
+    style = ('.spin{opacity:0;animation:spin 9s step-end infinite}'
+             '@keyframes spin{0%{opacity:1}1.78%{opacity:0}100%{opacity:0}}'
+             '.final{opacity:0;animation:land 9s step-end infinite}'
+             '@keyframes land{0%{opacity:0}10.7%{opacity:1}100%{opacity:1}}'
+             '@media (prefers-reduced-motion:reduce){.spin{animation:none}.final{animation:none;opacity:1}}')
+    return svg(W, H, ''.join(b), T['aria'].format(s=summary), style)
+
+
+def verdict(red, yellow, lang):
+    if lang == 'en':
+        return 'the attack wins' if red > yellow else 'the defence holds'
+    return 'o ataque leva' if red > yellow else 'a defesa segura'
+
+
+def dice_board(lang, state):
+    """The scoreboard under the dice, between the <!-- dice --> markers."""
+    v, c, total = state['visitors'], state['capybara'], state.get('total', 0)
+    if not state['rolls']:
+        return ('Nobody has rolled yet. Visitors 0, capybara 0.' if lang == 'en'
+                else 'Ninguém rolou ainda. Visitantes 0, capivara 0.')
+    if lang == 'en':
+        lines = [f'Visitors {v}, capybara {c}, after {total} {"roll" if total == 1 else "rolls"}. The latest:', '',
+                 '| Player | Attack | Defence | Result |', '| :-- | :-: | :-: | :-- |']
+    else:
+        lines = [f'Visitantes {v}, capivara {c}, depois de {total} {"rolagem" if total == 1 else "rolagens"}. '
+                 'As últimas:', '', '| Jogador | Ataque | Defesa | Resultado |', '| :-- | :-: | :-: | :-- |']
+    for r in state['rolls'][:5]:
+        lines.append(f'| [{r["login"]}](https://github.com/{r["login"]}) | {r["red"]} | {r["yellow"]} | '
+                     f'{verdict(r["red"], r["yellow"], lang)} |')
+    return '\n'.join(lines)
+
+
 # ---------------------------------------------------------------- end of broadcast (CH 11)
 END_TEXT = {
     'en': {'big': 'END OF BROADCAST', 'aria': 'Test-pattern colour bars with the words End of broadcast, then the tube switches off'},
@@ -863,7 +1008,11 @@ def main():
         write(f'blueprint-{lang}.svg', blueprint(lang))
         write(f'sheet-{lang}.svg', sheet(lang))
         write(f'end-{lang}.svg', endcard(lang))
+        write(f'items-{lang}.svg', items(lang))
+        state = json.loads((ROOT / 'game' / 'state.json').read_text(encoding='utf-8'))
+        write(f'dice-{lang}.svg', dice_card(lang, state))
         readme = 'README.md' if lang == 'en' else 'README.pt-BR.md'
+        fill(readme, 'dice', dice_board(lang, state))
         g = json.dumps(geojson(lang), ensure_ascii=False, separators=(',', ':'))
         fill(readme, 'map', f'```geojson\n{g}\n```')
         fill(readme, 'table', table(lang))

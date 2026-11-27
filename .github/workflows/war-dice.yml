@@ -1,0 +1,27 @@
+name: War dice
+
+# A visitor opens an issue titled "war|roll"; this rolls the dice, updates the
+# score on the profile and closes the issue. See tools/war_dice.py.
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: war-dice
+  cancel-in-progress: false
+
+jobs:
+  roll:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.issue.title, 'war|roll')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Roll every open war|roll issue
+        run: python3 tools/war_dice.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

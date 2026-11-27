@@ -13,9 +13,30 @@ Estudo Relações Internacionais na Universidade Federal de Santa Catarina (UFSC
 <a href="https://lattes.cnpq.br/4797477996223695">Lattes</a>
 </p>
 
+## Ao vivo
+
+<img src="https://raw.githubusercontent.com/tavmata/tavmata/output/capybara-pt.svg" width="100%" alt="Minhas contribuições no GitHub dos últimos 12 meses desenhadas como um campo de pinhões, com a capivara da sala atravessando e comendo, mais o total e as minhas sequências atual e recorde">
+
+<sub>Uma GitHub Action redesenha isto toda manhã a partir do meu calendário público de contribuições.</sub>
+
 ## Programação de hoje
 
 Esta página segue [o meu site](https://kich.dev.br): cada seção é um canal de TV desenhado num estilo diferente. Abra um para sintonizar.
+
+<details open>
+<summary><code>CH 01</code> Sala · role os dados do War contra a capivara</summary>
+<br>
+
+<a href="https://github.com/tavmata/tavmata/issues/new?title=war%7Croll&body=Clique%20em%20Create%20para%20rolar%20o%20dado%20vermelho%20contra%20a%20capivara.%20O%20resultado%20aparece%20em%20github.com%2Ftavmata%20em%20cerca%20de%20um%20minuto."><img src="assets/dice-pt.svg?v=0" width="100%" alt="Dados de War: o seu dado vermelho contra o dado amarelo da capivara, com o placar até agora"></a>
+
+<!-- dice:start -->
+Ninguém rolou ainda. Visitantes 0, capivara 0.
+<!-- dice:end -->
+
+[Role o dado vermelho](https://github.com/tavmata/tavmata/issues/new?title=war%7Croll&body=Clique%20em%20Create%20para%20rolar%20o%20dado%20vermelho%20contra%20a%20capivara.%20O%20resultado%20aparece%20em%20github.com%2Ftavmata%20em%20cerca%20de%20um%20minuto.). Você ataca, a capivara defende com o dado amarelo, e empate fica com a defesa, como no War. O link abre uma issue neste repositório, e uma GitHub Action rola os dois dados, coloca o resultado aqui e fecha a issue, em geral em menos de um minuto. Precisa de uma conta no GitHub, e cada jogador rola uma vez a cada 10 minutos.
+
+<sub><a href="https://kich.dev.br/#sala">CH 01 no kich.dev.br</a>, onde os dados rolam com um clique e sem conta</sub>
+</details>
 
 <details open>
 <summary><code>CH 02</code> Kapi Online · o MMORPG que faço com agentes de código</summary>
@@ -194,6 +215,9 @@ Os dois rodam no navegador e salvam o progresso no seu aparelho.
 
 <a href="https://kich.dev.br/#curriculo"><img src="assets/sheet-pt.svg" width="100%" alt="Uma tela de status de RPG. IAA 9,07, seis idiomas, 922 commits, dois artigos, duas ONUs simuladas, duas menções na OBMEP. Missões concluídas: Núcleo de Migração da DPU, voluntário online da ONU, monitoria e pesquisa no IFSC. Em curso: RI na UFSC, pesquisa Sul-Sul, Kapi Online"></a>
 
+<img src="assets/items-pt.svg" width="100%" alt="A página de itens do menu de RPG, com as minhas ferramentas: Node.js no servidor do jogo, Canvas 2D e WebGL2 na arte, Godot 4 no cliente 3D, MongoDB nos dados dos jogadores, ElevenLabs nas vozes dos NPCs, Python, Power BI com DAX, Playwright, Claude Code e Gemini CLI">
+
+
 As menções honrosas na OBMEP são de 2017 e 2019, e me formo em dezembro de 2027. O currículo para imprimir está no [kich.dev.br](https://kich.dev.br/#curriculo).
 
 <sub><a href="https://kich.dev.br/#curriculo">CH 09 no kich.dev.br</a></sub>
@@ -245,4 +269,4 @@ Quem quiser mais um capítulo,<br>
 
 <br>
 
-<sub>Os cartões desta página são desenhados em código, como o site: o <a href="https://github.com/tavmata/tavmata/blob/main/tools/build.py">tools/build.py</a> faz a sala em pixel, o relógio, o passaporte, a planta, o menu de RPG e o padrão de teste. E tem um pinhão escondido na sala lá em cima. Ele aparece por três segundos a cada volta da TV.</sub>
+<sub>Os cartões desta página são desenhados em código, como o site: o <a href="https://github.com/tavmata/tavmata/blob/main/tools/build.py">tools/build.py</a> faz a sala em pixel, os dados, o relógio, o passaporte, a planta, os menus de RPG e o padrão de teste. Duas GitHub Actions mantêm a página andando: uma redesenha o cartão de contribuições toda manhã (<a href="https://github.com/tavmata/tavmata/blob/main/tools/graph.py">tools/graph.py</a>) e a outra rola os dados (<a href="https://github.com/tavmata/tavmata/blob/main/tools/war_dice.py">tools/war_dice.py</a>). E tem um pinhão escondido na sala lá em cima. Ele aparece por três segundos a cada volta da TV.</sub>

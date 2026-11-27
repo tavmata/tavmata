@@ -1,0 +1,41 @@
+name: Capybara card
+
+# Redraws the live contribution card every morning and publishes it to the
+# `output` branch, which the READMEs load the card from.
+on:
+  schedule:
+    - cron: "23 8 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "tools/graph.py"
+      - "tools/build.py"
+      - "tools/room.json"
+      - ".github/workflows/capybara.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: capybara-card
+  cancel-in-progress: true
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Draw the card
+        run: python3 tools/graph.py dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish to the output branch
+        working-directory: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git init -q -b output
+          git add .
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m "Capybara card for $(date -u +%F)"
+          git push -q -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" output

@@ -133,5 +133,140 @@
 "233",
 "223",
 ".1."
+],
+"dice": {
+"red": {
+"1": [
+"UUUUUUU",
+"URRRRRU",
+"URRRRRU",
+"URRwRRU",
+"URRRRRU",
+"URRRRRU",
+"UUUUUUU"
+],
+"2": [
+"UUUUUUU",
+"URwRRRU",
+"URRRRRU",
+"URRRRRU",
+"URRRRRU",
+"URRRwRU",
+"UUUUUUU"
+],
+"3": [
+"UUUUUUU",
+"URwRRRU",
+"URRRRRU",
+"URRwRRU",
+"URRRRRU",
+"URRRwRU",
+"UUUUUUU"
+],
+"4": [
+"UUUUUUU",
+"URwRwRU",
+"URRRRRU",
+"URRRRRU",
+"URRRRRU",
+"URwRwRU",
+"UUUUUUU"
+],
+"5": [
+"UUUUUUU",
+"URwRwRU",
+"URRRRRU",
+"URRwRRU",
+"URRRRRU",
+"URwRwRU",
+"UUUUUUU"
+],
+"6": [
+"UUUUUUU",
+"URwRwRU",
+"URRRRRU",
+"URwRwRU",
+"URRRRRU",
+"URwRwRU",
+"UUUUUUU"
+]
+},
+"yel": {
+"1": [
+"YYYYYYY",
+"YsssssY",
+"YsssssY",
+"YssSssY",
+"YsssssY",
+"YsssssY",
+"YYYYYYY"
+],
+"2": [
+"YYYYYYY",
+"YsSsssY",
+"YsssssY",
+"YsssssY",
+"YsssssY",
+"YsssSsY",
+"YYYYYYY"
+],
+"3": [
+"YYYYYYY",
+"YsSsssY",
+"YsssssY",
+"YssSssY",
+"YsssssY",
+"YsssSsY",
+"YYYYYYY"
+],
+"4": [
+"YYYYYYY",
+"YsSsSsY",
+"YsssssY",
+"YsssssY",
+"YsssssY",
+"YsSsSsY",
+"YYYYYYY"
+],
+"5": [
+"YYYYYYY",
+"YsSsSsY",
+"YsssssY",
+"YssSssY",
+"YsssssY",
+"YsSsSsY",
+"YYYYYYY"
+],
+"6": [
+"YYYYYYY",
+"YsSsSsY",
+"YsssssY",
+"YsSsSsY",
+"YsssssY",
+"YsSsSsY",
+"YYYYYYY"
+]
+}
+},
+"capybara": [
+"...................cc.........",
+"...................cdccccccc..",
+"..................chhhhhhhhhc.",
+".................cheeeeeeeeKKc",
+".................cheeeddeeeedc",
+".................ceeeeKKeeeedc",
+"........ccccccccceeeeeeeeeeddc",
+".....ccchhhhhhhheeeeeeeeeedddc",
+"...cchhheeeeeeeeeeeeeeeeeeeedc",
+"..chheeeeeeeeeeeeeeeeeeeeddec.",
+"..cheeeeeeeeeeeeeeddddddddcc..",
+".cheeeeddeeeeeeeeeddddcccc....",
+".ceeeeeeedeeeeeeeeeddc........",
+".ceeeeeeeedeeeeeeeeeddc.......",
+".ceeeeeeeedeeeeeeeeeeddc......",
+".ceeeeeeedeeeeeeeeeeeeddc.....",
+".ceeeeeeeeeeeeeeeedddddddcccc.",
+"..cddddddddddddddddddddddhhhc.",
+"...ccccccccccccccccccccccccc.."
 ]
 }
