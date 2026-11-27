@@ -10,7 +10,8 @@ the site (commits per hour) and from the SISMIGRA dashboard
 (github.com/tavmata/painel-sul-sul-sismigra).
 
 Outputs go to assets/: header, clock, passport, blueprint, sheet and end-card
-SVGs in English and Portuguese, plus map-en.geojson / map-pt.geojson.
+SVGs in English and Portuguese. It also refreshes the map and the table
+between the <!-- map --> and <!-- table --> markers in both READMEs.
 """
 import json
 import math
@@ -798,32 +799,56 @@ ORIGINS = [
 BRASILIA = (-47.88, -15.79)
 
 
+def num(n, pt):
+    return f'{n:,}'.replace(',', '.') if pt else f'{n:,}'
+
+
+def pct(v, pt):
+    return f'{v:.1f}%'.replace('.', ',') if pt else f'{v:.1f}%'
+
+
 def geojson(lang):
+    """Origins as points, each joined to Brazil by a line. GitHub's map ignores
+    simplestyle colours, so the data carries only what a reader needs."""
     pt = lang == 'pt'
-    col = {'asia': '#e6007e', 'africa': '#0078bf'}
     reg = {'asia': 'Ásia' if pt else 'Asia', 'africa': 'África' if pt else 'Africa'}
-    top = max(o[6] for o in ORIGINS)
     feats = []
     for iso, en, ptn, r, lon, lat, n, work, hum in ORIGINS:
-        label = {'de': ptn, 'registros': f'{n:,}'.replace(',', '.')} if pt else {'from': en, 'records': f'{n:,}'}
+        label = {'de': ptn, 'registros': num(n, pt)} if pt else {'from': en, 'records': num(n, pt)}
         feats.append({'type': 'Feature', 'geometry': {'type': 'LineString', 'coordinates': [[lon, lat], list(BRASILIA)]},
-                      'properties': {**label, 'stroke': col[r], 'stroke-width': round(1 + 7 * n / top, 1),
-                                     'stroke-opacity': 0.45}})
+                      'properties': label})
     for iso, en, ptn, r, lon, lat, n, work, hum in ORIGINS:
-        size = 'large' if n >= 20000 else 'medium' if n >= 6000 else 'small'
         if pt:
-            props = {'país': ptn, 'região': reg[r], 'registros': f'{n:,}'.replace(',', '.'),
-                     'amparo de trabalho ou investimentos': f'{work:.1f}%'.replace('.', ','),
-                     'acolhida humanitária ou refúgio': f'{hum:.1f}%'.replace('.', ',')}
+            props = {'país': ptn, 'região': reg[r], 'registros': num(n, pt),
+                     'amparo de trabalho ou investimentos': pct(work, pt), 'acolhida humanitária ou refúgio': pct(hum, pt)}
         else:
-            props = {'country': en, 'region': reg[r], 'records': f'{n:,}',
-                     'work or investment basis': f'{work:.1f}%', 'humanitarian or refugee basis': f'{hum:.1f}%'}
-        props.update({'marker-color': col[r], 'marker-size': size})
+            props = {'country': en, 'region': reg[r], 'records': num(n, pt),
+                     'work or investment basis': pct(work, pt), 'humanitarian or refugee basis': pct(hum, pt)}
         feats.append({'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [lon, lat]}, 'properties': props})
     feats.append({'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': list(BRASILIA)},
-                  'properties': {'name': 'Brasil' if pt else 'Brazil', 'marker-color': '#f5b700', 'marker-size': 'large',
-                                 'marker-symbol': 'star'}})
+                  'properties': {'name': 'Brasil' if pt else 'Brazil'}})
     return {'type': 'FeatureCollection', 'features': feats}
+
+
+def table(lang):
+    """The numbers behind the map, as a Markdown table sorted by records."""
+    pt = lang == 'pt'
+    head = (['País', 'Região', 'Registros', 'Trabalho ou investimentos', 'Acolhida humanitária ou refúgio'] if pt else
+            ['Country', 'Region', 'Records', 'Work or investment basis', 'Humanitarian or refugee basis'])
+    reg = {'asia': 'Ásia' if pt else 'Asia', 'africa': 'África' if pt else 'Africa'}
+    rows = ['| ' + ' | '.join(head) + ' |', '| :-- | :-- | --: | --: | --: |']
+    for iso, en, ptn, r, lon, lat, n, work, hum in sorted(ORIGINS, key=lambda o: -o[6]):
+        rows.append(f'| {ptn if pt else en} | {reg[r]} | {num(n, pt)} | {pct(work, pt)} | {pct(hum, pt)} |')
+    return '\n'.join(rows)
+
+
+def fill(readme, marker, content):
+    """Replaces the text between <!-- marker:start --> and <!-- marker:end -->."""
+    p = ROOT / readme
+    s = p.read_text(encoding='utf-8')
+    a, b = f'<!-- {marker}:start -->', f'<!-- {marker}:end -->'
+    i, j = s.index(a) + len(a), s.index(b)
+    p.write_text(s[:i] + '\n' + content + '\n' + s[j:], encoding='utf-8')
 
 
 def main():
@@ -838,10 +863,10 @@ def main():
         write(f'blueprint-{lang}.svg', blueprint(lang))
         write(f'sheet-{lang}.svg', sheet(lang))
         write(f'end-{lang}.svg', endcard(lang))
-        g = geojson(lang)
-        write(f'map-{lang}.geojson', json.dumps(g, ensure_ascii=False, indent=1))
-        (ROOT / 'tools' / f'map-{lang}.min.json').write_text(json.dumps(g, ensure_ascii=False, separators=(',', ':')),
-                                                              encoding='utf-8')
+        readme = 'README.md' if lang == 'en' else 'README.pt-BR.md'
+        g = json.dumps(geojson(lang), ensure_ascii=False, separators=(',', ':'))
+        fill(readme, 'map', f'```geojson\n{g}\n```')
+        fill(readme, 'table', table(lang))
 
 
 TV_B64 = ''
