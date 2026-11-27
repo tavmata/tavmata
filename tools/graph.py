@@ -187,9 +187,10 @@ def card(days, lang, today):
     b.append(f'<path fill="#17404C" d="M{lx + 5} {257}h3v3h-3z"/>')
     b.append(B.ptext(T['less'], lx - 6, 252, 2, '#6E767C', anchor='end'))
 
+    gone = 100 * 4.0 / period  # an eaten pinhão grows back four seconds later
     style = (f'.p{{transform-box:fill-box;transform-origin:center;animation:eat {period:.2f}s infinite}}'
-             '@keyframes eat{0%{opacity:0;transform:scale(.2)}55%{opacity:0;transform:scale(.2)}'
-             '58%{opacity:1;transform:scale(1)}100%{opacity:1;transform:scale(1)}}'
+             f'@keyframes eat{{0%{{opacity:0;transform:scale(.2)}}{gone:.2f}%{{opacity:0;transform:scale(.2)}}'
+             f'{gone + 1.5:.2f}%{{opacity:1;transform:scale(1)}}100%{{opacity:1;transform:scale(1)}}}}'
              f'.capy{{transform-origin:0 0;animation:walk {period:.2f}s linear infinite}}'
              f'@keyframes walk{{{"".join(frames)}}}'
              '.dot{animation:blink 1.6s step-end infinite}@keyframes blink{50%{opacity:0}}'
